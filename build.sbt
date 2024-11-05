@@ -1,3 +1,6 @@
+import ReleaseTransformations.*
+import sbtversionpolicy.withsbtrelease.ReleaseVersion
+
 organization := "com.gu"
 name := "play-json-extensions"
 scalaVersion := "2.13.15"
@@ -25,3 +28,17 @@ scalacOptions ++= Seq(
 Test / testOptions +=
   Tests.Argument(TestFrameworks.ScalaTest, "-u", s"test-results/scala-${scalaVersion.value}", "-o")
 parallelExecution := false // <- until TMap thread-safety issues are resolved
+
+// releaseVersion := ReleaseVersion.fromAggregatedAssessedCompatibilityWithLatestRelease().value,
+releaseCrossBuild := true // true if you cross-build the project for multiple Scala versions
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  setNextVersion,
+  commitNextVersion
+)
