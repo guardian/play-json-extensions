@@ -1,4 +1,4 @@
-package ai.x.play.json
+package com.gu.ai.x.play.json
 import scala.reflect.macros.blackbox
 import _root_.play.api.libs.json._
 import collection.immutable.ListMap
@@ -25,7 +25,7 @@ package object internals {
       import c.universe._
       val T = c.weakTypeOf[T]
       if ( !T.typeSymbol.isClass || !T.typeSymbol.asClass.isCaseClass ) c.error( c.enclosingPosition, s"$T does not have case modifier" )
-      q"new _root_.ai.x.play.json.internals.CaseClass[$T]"
+      q"new _root_.com.gu.ai.x.play.json.internals.CaseClass[$T]"
     }
     /** fails compilation if T is not a case class
      *  meaning this can be used as an implicit to check
@@ -39,7 +39,7 @@ package object internals {
       import c.universe._
       val T = c.weakTypeOf[T]
       if ( !T.typeSymbol.isClass || !T.typeSymbol.asClass.isModuleClass ) c.error( c.enclosingPosition, s"$T is not an object" )
-      q"new _root_.ai.x.play.json.internals.SingletonObject[$T]"
+      q"new _root_.com.gu.ai.x.play.json.internals.SingletonObject[$T]"
     }
     /** fails compilation if T is not a singleton object class
      *  meaning this can be used as an implicit to check
@@ -75,16 +75,16 @@ package object internals {
 import internals._
 
 @implicitNotFound( """could not find implicit value for parameter helper: play.api.libs.json.Reads[${T}]
-TRIGGERED BY: could not find implicit value for parameter helper: ai.x.play.json.OptionValidationDispatcher[${T}]
+TRIGGERED BY: could not find implicit value for parameter helper: com.gu.ai.x.play.json.OptionValidationDispatcher[${T}]
 TO SOLVE THIS
 1. Make sure there is a Reads[${T}] or Format[${T}] in the implicit scope
 2. In case of Reads[Option[...]] you need to either
-   import ai.x.play.json.implicits.optionWithNull // suggested
+   import com.gu.ai.x.play.json.implicits.optionWithNull // suggested
    or
-   import ai.x.play.json.implicits.optionNoError // buggy play-json 2.3 behavior
+   import com.gu.ai.x.play.json.implicits.optionNoError // buggy play-json 2.3 behavior
 3. In case of Reads[... .type]
-   import ai.x.play.json.SingletonEncoder.simpleName
-   import ai.x.play.json.implicits.formatSingleton
+   import com.gu.ai.x.play.json.SingletonEncoder.simpleName
+   import com.gu.ai.x.play.json.implicits.formatSingleton
 """ )
 final class OptionValidationDispatcher[T] private[json] ( val validate: JsLookupResult => JsResult[T] ) extends AnyVal
 
@@ -124,7 +124,7 @@ object `package` {
 
 private[json] class Macros( val c: blackbox.Context ) {
   import c.universe._
-  val pkg = q"_root_.ai.x.play.json"
+  val pkg = q"_root_.com.gu.ai.x.play.json"
   val pjson = q"_root_.play.api.libs.json"
 
   /** like identity but prints desugared code and tree */
@@ -330,30 +330,6 @@ private[json] class Macros( val c: blackbox.Context ) {
       """
   }
 
-  private def verifyKnownDirectSubclassesPostTyper( _T: Type, macroCall: String ): Tree = {
-    val T = _T.typeSymbol.asClass
-
-    val subs = T.knownDirectSubclasses
-
-    // hack to detect breakage of knownDirectSubclasses as suggested in
-    // https://gitter.im/scala/scala/archives/2015/05/05 and
-    // https://gist.github.com/retronym/639080041e3fecf58ba9
-    val global = c.universe.asInstanceOf[scala.tools.nsc.Global]
-    def checkSubsPostTyper = if ( subs != T.knownDirectSubclasses )
-      c.error(
-        c.macroApplication.pos,
-        s"""macro call $macroCall happened in a place, where typechecking of $T hasn't been completed yet.
-Completion is required in order to find all direct subclasses.
-Try moving the call lower in the file, into a separate file, a sibbling package, a separate sbt sub project or else.
-This is caused by https://issues.scala-lang.org/browse/SI-7046 and can only be avoided by manually moving the call.
-"""
-      )
-
-    val checkSubsPostTyperTypTree =
-      new global.TypeTreeWithDeferredRefCheck()( () => { checkSubsPostTyper; global.TypeTree( global.NoType ) } ).asInstanceOf[TypTree]
-    q"type VerifyKnownDirectSubclassesPostTyper = $checkSubsPostTyperTypTree"
-  }
-
   private def assertClass[T: c.WeakTypeTag]( msg: String = s"required class or trait" ) = {
     val T = c.weakTypeOf[T].typeSymbol
     if ( !T.isClass ) {
@@ -441,7 +417,6 @@ This can be caused by https://issues.scala-lang.org/browse/SI-7046 which can onl
     q"""
       {
         new $pjson.$formatClass[$T]{
-          ${verifyKnownDirectSubclassesPostTyper( T: Type, s"formatSealed[$T, $pjson.$formatClass[$T]" )}
           def reads(json: $pjson.JsValue) = $readsWithFallback orElse $pjson.JsError("Could not deserialize to any of the subtypes of "+ $rootName +". Tried: "+ $subNames)
           def writes(obj: $T) = {
             obj match {
