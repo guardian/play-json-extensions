@@ -4,7 +4,6 @@ import sbtversionpolicy.withsbtrelease.ReleaseVersion
 organization := "com.gu"
 name := "play-json-extensions"
 scalaVersion := "2.13.15"
-crossScalaVersions := (14 to scalaVersion.value.split('.').last.toInt).map(minor => s"2.13.$minor")
 description := "Additional type classes for the play-json serialization library"
 
 startYear := Some(2015)
@@ -30,7 +29,6 @@ Test / testOptions +=
 parallelExecution := false // <- until TMap thread-safety issues are resolved
 
 // releaseVersion := ReleaseVersion.fromAggregatedAssessedCompatibilityWithLatestRelease().value,
-releaseCrossBuild := true // true if you cross-build the project for multiple Scala versions
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
