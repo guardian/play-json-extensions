@@ -5,7 +5,6 @@ organization := "com.gu"
 name := "play-json-extensions"
 scalaVersion := "2.13.15"
 crossScalaVersions := (14 to scalaVersion.value.split('.').last.toInt).map(minor => s"2.13.$minor")
-crossVersion := CrossVersion.full // see https://github.com/scala/bug/issues/12862#issuecomment-2457553135
 description := "Additional type classes for the play-json serialization library"
 
 startYear := Some(2015)
