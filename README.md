@@ -2,6 +2,7 @@ Play-Json extensions
 ==========================
 
 [![play-json-extensions Scala version support](https://index.scala-lang.org/guardian/play-json-extensions/play-json-extensions/latest-by-scala-version.svg?platform=jvm)](https://index.scala-lang.org/guardian/play-json-extensions/play-json-extensions)
+
 This is a minimal fork of [bizzabo/play-json-extensions](https://github.com/bizzabo/play-json-extensions).
 
 This fork is restricted in the versions it supports:
