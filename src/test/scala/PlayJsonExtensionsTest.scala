@@ -26,11 +26,11 @@ object Adt {
   case object `Choice.C` extends SomeAdt
   final case class X( i: Int, s: String ) extends SomeAdt
   object X {
-    implicit def jsonFormat = Jsonx.formatCaseClass[X]
+    implicit def jsonFormat: OFormat[X] = Jsonx.formatCaseClass[X]
   }
   final case class Y( i: Int, s: String ) extends SomeAdt
   object Y {
-    implicit def jsonFormat = Jsonx.formatCaseClass[Y]
+    implicit def jsonFormat: OFormat[Y] = Jsonx.formatCaseClass[Y]
     def apply = "making sure overloaded apply doesn't break"
   }
 }
@@ -38,11 +38,11 @@ object AdtWithEmptyLeafs {
   sealed trait SomeAdt
   final case class A() extends SomeAdt
   object A {
-    implicit def jsonFormat = Jsonx.formatCaseClass[A]
+    implicit def jsonFormat: OFormat[A] = Jsonx.formatCaseClass[A]
   }
   final case class B() extends SomeAdt
   object B {
-    implicit def jsonFormat = Jsonx.formatCaseClass[B]
+    implicit def jsonFormat: OFormat[B] = Jsonx.formatCaseClass[B]
   }
 }
 
@@ -52,7 +52,7 @@ case class CaseClassChild( i: Int ) extends SealedTraitWithoutObjects
 object FailureTest {
   import org.scalatest.Assertions._
   type AbstractType
-  implicit val childFormat = Jsonx.formatCaseClass[CaseClassChild]
+  implicit val childFormat: OFormat[CaseClassChild] = Jsonx.formatCaseClass[CaseClassChild]
   Jsonx.formatSealed[SealedTraitWithoutObjects]
   assertTypeError( "Jsonx.formatSealed[Foo#X]" )
 }
@@ -296,41 +296,42 @@ class PlayJsonExtensionsTest extends FunSuite {
 abstract class JsonTestClasses {
   implicit def option[A]( implicit reads: Reads[A] ): Reads[Option[A]]
   case class A( s: String )
-  object A { implicit def jsonFormat = Jsonx.formatCaseClass[A] }
+  object A { implicit def jsonFormat: OFormat[A] = Jsonx.formatCaseClass[A] }
   case class B( s: Option[String] )
-  object B { implicit def jsonFormat = Jsonx.formatCaseClass[B] }
+  object B { implicit def jsonFormat: OFormat[B] = Jsonx.formatCaseClass[B] }
   case class C( i: Int, b: Option[B] )
-  object C { implicit def jsonFormat = Jsonx.formatCaseClass[C] }
+  object C { implicit def jsonFormat: OFormat[C] = Jsonx.formatCaseClass[C] }
   case class A2( s: String )
-  object A2 { implicit def jsonFormat = Json.format[A2] }
+  object A2 { implicit def jsonFormat: OFormat[A2] = Json.format[A2] }
   case class B2( s: Option[String] )
-  object B2 { implicit def jsonFormat = Json.format[B2] }
+  object B2 { implicit def jsonFormat: OFormat[B2] = Json.format[B2] }
   case class C2( i: Int, b: Option[B2] )
-  object C2 { implicit def jsonFormat = Json.format[C2] }
+  object C2 { implicit def jsonFormat: OFormat[C2] = Json.format[C2] }
 
   case class Mandatory( s: List[String] )
-  object Mandatory { implicit def jsonFormat = Jsonx.formatCaseClass[Mandatory] }
+  object Mandatory { implicit def jsonFormat: OFormat[Mandatory] = Jsonx.formatCaseClass[Mandatory] }
   case class Optional( o: Option[Mandatory] )
-  object Optional { implicit def jsonFormat = Jsonx.formatCaseClass[Optional] }
+  object Optional { implicit def jsonFormat: OFormat[Optional] = Jsonx.formatCaseClass[Optional] }
 
   case class Mandatory2( s: List[String] )
-  object Mandatory2 { implicit def jsonFormat = Jsonx.formatCaseClass[Mandatory2] }
+  object Mandatory2 { implicit def jsonFormat: OFormat[Mandatory2] = Jsonx.formatCaseClass[Mandatory2] }
   case class Optional2( o: Option[Mandatory2] )
-  object Optional2 { implicit def jsonFormat = Jsonx.formatCaseClass[Optional2] }
+  object Optional2 { implicit def jsonFormat: OFormat[Optional2] = Jsonx.formatCaseClass[Optional2] }
 
   case class ListInner( string: String )
-  object ListInner { implicit def jsonFormat = Jsonx.formatCaseClass[ListInner] }
+  object ListInner { implicit def jsonFormat: OFormat[ListInner] = Jsonx.formatCaseClass[ListInner] }
   case class ListOuter( inner: List[ListInner] )
-  object ListOuter { implicit def jsonFormat = Jsonx.formatCaseClass[ListOuter] }
+  object ListOuter { implicit def jsonFormat: OFormat[ListOuter] = Jsonx.formatCaseClass[ListOuter] }
   case class ClassOuter( outer: List[ListOuter] )
-  object ClassOuter { implicit def jsonFormat = Jsonx.formatCaseClass[ClassOuter] }
+  object ClassOuter {
+    implicit def jsonFormat: OFormat[ClassOuter] = Jsonx.formatCaseClass[ClassOuter] }
 
   case class ListInner2( string: String )
-  object ListInner2 { implicit def jsonFormat = Jsonx.formatCaseClass[ListInner2] }
+  object ListInner2 { implicit def jsonFormat: OFormat[ListInner2] = Jsonx.formatCaseClass[ListInner2] }
   case class ListOuter2( inner: List[ListInner2] )
-  object ListOuter2 { implicit def jsonFormat = Jsonx.formatCaseClass[ListOuter2] }
+  object ListOuter2 { implicit def jsonFormat: OFormat[ListOuter2] = Jsonx.formatCaseClass[ListOuter2] }
   case class ClassOuter2( outer: List[ListOuter2] )
-  object ClassOuter2 { implicit def jsonFormat = Jsonx.formatCaseClass[ClassOuter2] }
+  object ClassOuter2 { implicit def jsonFormat: OFormat[ClassOuter2] = Jsonx.formatCaseClass[ClassOuter2] }
 }
 class JsonTests extends FunSuite {
   test( "json optionWithNull" ) {
@@ -436,7 +437,7 @@ class JsonTests extends FunSuite {
   }
   case class DontInline( a: Int )
   object DontInline {
-    implicit def format = Jsonx.formatCaseClass[DontInline]
+    implicit def format: OFormat[DontInline] = Jsonx.formatCaseClass[DontInline]
   }
   case class Inline( a: Int )
   test( "formatAuto" ) {
