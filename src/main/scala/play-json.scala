@@ -67,7 +67,7 @@ package object internals {
           b += elem
         }
       }
-      b.result
+      b.result()
     }
   }
 }
@@ -197,7 +197,7 @@ private[json] class Macros( val c: blackbox.Context ) {
         """
       } else if ( isCaseClass( T ) && caseClassFieldsTypes( T ).size == 1 ) {
         val ArgType = caseClassFieldsTypes( T ).head._2
-        val name = TermName( c.freshName )
+        val name = TermName( c.freshName() )
         q"""
         implicit def $name = $pkg.Jsonx.formatAuto[$ArgType]
         $pkg.Jsonx.formatInline[$T]
@@ -206,7 +206,7 @@ private[json] class Macros( val c: blackbox.Context ) {
         val fieldFormatters = caseClassFieldsTypes( T ).map {
           case ( _, t ) => t
         }.toVector.distinctWith( _ =:= _ ).map { t =>
-          val name = TermName( c.freshName )
+          val name = TermName( c.freshName() )
           q"implicit def $name = $pkg.Jsonx.formatAuto[$t]"
         }
         val t = q"""
@@ -216,7 +216,7 @@ private[json] class Macros( val c: blackbox.Context ) {
         t
       } else if ( T.typeSymbol.isClass && T.typeSymbol.asClass.isSealed && T.typeSymbol.asClass.isAbstract ) {
         val fieldFormatters = T.typeSymbol.asClass.knownDirectSubclasses.map { t =>
-          val name = TermName( c.freshName )
+          val name = TermName( c.freshName() )
           q"implicit def $name = Jsonx.formatAuto[$t]"
         }
         q"""
@@ -286,7 +286,7 @@ private[json] class Macros( val c: blackbox.Context ) {
     }
     val ( results, mkResults ) = caseClassFieldsTypes( T ).map {
       case ( k, t ) =>
-        val name = TermName( c.freshName )
+        val name = TermName( c.freshName() )
         val path = q"""(json \ (encoder.encode($k)))"""
         val result = q"""{
           import $pkg._
@@ -460,9 +460,9 @@ object SingletonEncoder {
     )
   )
   def decodeName( name: String ) = NameTransformer.decode( name.dropRight( 1 ) )
-  implicit def simpleName = SingletonEncoder( cls => JsString( decodeName( cls.getSimpleName ) ) )
-  implicit def simpleNameLowerCase = SingletonEncoder( cls => JsString( camel2underscore( decodeName( cls.getSimpleName ) ) ) )
-  implicit def simpleNameUpperCase = SingletonEncoder( cls => JsString( camel2underscore( decodeName( cls.getSimpleName ) ).toUpperCase ) )
+  implicit def simpleName:SingletonEncoder = SingletonEncoder(cls => JsString(decodeName(cls.getSimpleName)))
+  implicit def simpleNameLowerCase: SingletonEncoder = SingletonEncoder( cls => JsString( camel2underscore( decodeName( cls.getSimpleName ) ) ) )
+  implicit def simpleNameUpperCase: SingletonEncoder = SingletonEncoder( cls => JsString( camel2underscore( decodeName( cls.getSimpleName ) ).toUpperCase ) )
 }
 
 sealed trait NameEncoder {
