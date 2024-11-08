@@ -15,7 +15,7 @@ object `package` {
     } else JsError( errors )
   }
 
-  implicit def formatTuple2[T1: Format, T2: Format] = new Format[( T1, T2 )] {
+  implicit def formatTuple2[T1: Format, T2: Format]: Format[(T1, T2)] = new Format[( T1, T2 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2 ) ) =>
         val ( r1, r2 ) =
@@ -30,7 +30,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ) ) )
   }
 
-  implicit def formatTuple3[T1: Format, T2: Format, T3: Format] = new Format[( T1, T2, T3 )] {
+  implicit def formatTuple3[T1: Format, T2: Format, T3: Format]: Format[(T1, T2, T3)] = new Format[( T1, T2, T3 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3 ) ) =>
         val ( r1, r2, r3 ) =
@@ -45,7 +45,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ) ) )
   }
 
-  implicit def formatTuple4[T1: Format, T2: Format, T3: Format, T4: Format] = new Format[( T1, T2, T3, T4 )] {
+  implicit def formatTuple4[T1: Format, T2: Format, T3: Format, T4: Format]: Format[(T1, T2, T3, T4)] = new Format[( T1, T2, T3, T4 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4 ) ) =>
         val ( r1, r2, r3, r4 ) =
@@ -60,7 +60,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ) ) )
   }
 
-  implicit def formatTuple5[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format] = new Format[( T1, T2, T3, T4, T5 )] {
+  implicit def formatTuple5[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format]: Format[(T1, T2, T3, T4, T5)] = new Format[( T1, T2, T3, T4, T5 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5 ) ) =>
         val ( r1, r2, r3, r4, r5 ) =
@@ -75,7 +75,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ) ) )
   }
 
-  implicit def formatTuple6[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format] = new Format[( T1, T2, T3, T4, T5, T6 )] {
+  implicit def formatTuple6[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format]: Format[(T1, T2, T3, T4, T5, T6)] = new Format[( T1, T2, T3, T4, T5, T6 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6 ) ) =>
         val ( r1, r2, r3, r4, r5, r6 ) =
@@ -90,7 +90,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ) ) )
   }
 
-  implicit def formatTuple7[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7 )] {
+  implicit def formatTuple7[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format]: Format[(T1, T2, T3, T4, T5, T6, T7)] = new Format[( T1, T2, T3, T4, T5, T6, T7 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7 ) =
@@ -105,7 +105,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ) ) )
   }
 
-  implicit def formatTuple8[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8 )] {
+  implicit def formatTuple8[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8 ) =
@@ -120,7 +120,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ) ) )
   }
 
-  implicit def formatTuple9[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9 )] {
+  implicit def formatTuple9[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9 ) =
@@ -135,7 +135,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ) ) )
   }
 
-  implicit def formatTuple10[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 )] {
+  implicit def formatTuple10[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10 ) =
@@ -150,7 +150,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ) ) )
   }
 
-  implicit def formatTuple11[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 )] {
+  implicit def formatTuple11[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11 ) =
@@ -165,7 +165,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ) ) )
   }
 
-  implicit def formatTuple12[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 )] {
+  implicit def formatTuple12[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12 ) =
@@ -180,7 +180,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ) ) )
   }
 
-  implicit def formatTuple13[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 )] {
+  implicit def formatTuple13[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13 ) =
@@ -195,7 +195,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ) ) )
   }
 
-  implicit def formatTuple14[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 )] {
+  implicit def formatTuple14[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14 ) =
@@ -210,7 +210,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ) ) )
   }
 
-  implicit def formatTuple15[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 )] {
+  implicit def formatTuple15[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15 ) =
@@ -225,7 +225,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ), Json.toJson( t._15 ) ) )
   }
 
-  implicit def formatTuple16[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16 )] {
+  implicit def formatTuple16[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16 ) =
@@ -240,7 +240,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ), Json.toJson( t._15 ), Json.toJson( t._16 ) ) )
   }
 
-  implicit def formatTuple17[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17 )] {
+  implicit def formatTuple17[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17 ) =
@@ -255,7 +255,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ), Json.toJson( t._15 ), Json.toJson( t._16 ), Json.toJson( t._17 ) ) )
   }
 
-  implicit def formatTuple18[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18 )] {
+  implicit def formatTuple18[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18 ) =
@@ -270,7 +270,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ), Json.toJson( t._15 ), Json.toJson( t._16 ), Json.toJson( t._17 ), Json.toJson( t._18 ) ) )
   }
 
-  implicit def formatTuple19[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19 )] {
+  implicit def formatTuple19[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19 ) =
@@ -285,7 +285,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ), Json.toJson( t._15 ), Json.toJson( t._16 ), Json.toJson( t._17 ), Json.toJson( t._18 ), Json.toJson( t._19 ) ) )
   }
 
-  implicit def formatTuple20[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format, T20: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20 )] {
+  implicit def formatTuple20[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format, T20: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20 ) =
@@ -300,7 +300,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ), Json.toJson( t._15 ), Json.toJson( t._16 ), Json.toJson( t._17 ), Json.toJson( t._18 ), Json.toJson( t._19 ), Json.toJson( t._20 ) ) )
   }
 
-  implicit def formatTuple21[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format, T20: Format, T21: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21 )] {
+  implicit def formatTuple21[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format, T20: Format, T21: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21 ) =
@@ -315,7 +315,7 @@ object `package` {
       JsArray( Seq( Json.toJson( t._1 ), Json.toJson( t._2 ), Json.toJson( t._3 ), Json.toJson( t._4 ), Json.toJson( t._5 ), Json.toJson( t._6 ), Json.toJson( t._7 ), Json.toJson( t._8 ), Json.toJson( t._9 ), Json.toJson( t._10 ), Json.toJson( t._11 ), Json.toJson( t._12 ), Json.toJson( t._13 ), Json.toJson( t._14 ), Json.toJson( t._15 ), Json.toJson( t._16 ), Json.toJson( t._17 ), Json.toJson( t._18 ), Json.toJson( t._19 ), Json.toJson( t._20 ), Json.toJson( t._21 ) ) )
   }
 
-  implicit def formatTuple22[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format, T20: Format, T21: Format, T22: Format] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22 )] {
+  implicit def formatTuple22[T1: Format, T2: Format, T3: Format, T4: Format, T5: Format, T6: Format, T7: Format, T8: Format, T9: Format, T10: Format, T11: Format, T12: Format, T13: Format, T14: Format, T15: Format, T16: Format, T17: Format, T18: Format, T19: Format, T20: Format, T21: Format, T22: Format]: Format[(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22)] = new Format[( T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22 )] {
     def reads( json: JsValue ) = json.validate[JsArray].flatMap {
       case JsArray( scala.collection.Seq( t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22 ) ) =>
         val ( r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22 ) =

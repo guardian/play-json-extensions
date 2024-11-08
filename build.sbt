@@ -21,7 +21,8 @@ libraryDependencies ++=   Seq(
 scalacOptions ++= Seq(
   "-release:11",
   "-feature", "-deprecation", "-unchecked",
-  "-language:experimental.macros"
+  "-language:experimental.macros",
+  "-Xfatal-warnings"
 )
 
 Test / testOptions +=
