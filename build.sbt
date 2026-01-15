@@ -32,7 +32,7 @@ val safeTransitiveDependencies = {
 libraryDependencies ++=   Seq(
   "org.playframework" %% "play-json" % "3.0.6",
   "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided",
-  "org.scalatest" %% "scalatest" % "3.0.8" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.9" % "test"
 ) ++ safeTransitiveDependencies
 
 scalacOptions ++= Seq(
