@@ -3,7 +3,7 @@ import sbtversionpolicy.withsbtrelease.ReleaseVersion
 
 organization := "com.gu"
 name := "play-json-extensions"
-scalaVersion := "2.13.15"
+scalaVersion := "2.13.18"
 description := "Additional type classes for the play-json serialization library"
 
 startYear := Some(2015)
@@ -21,7 +21,7 @@ licenses += (
 val safeTransitiveDependencies = {
   val jacksonVersion = "2.20.1"
   Seq(
-    "com.fasterxml.jackson.core" % "jackson-annotations" % jacksonVersion,
+    "com.fasterxml.jackson.core" % "jackson-annotations" % "2.20",
     "com.fasterxml.jackson.core" % "jackson-core" % jacksonVersion,
     "com.fasterxml.jackson.core" % "jackson-databind" % jacksonVersion,
     "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % jacksonVersion,
