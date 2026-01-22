@@ -19,7 +19,7 @@ licenses += (
  * 3. If no earlier version appears in the dependency list, the entry can be removed.
  */
 val safeTransitiveDependencies = {
-  val jacksonVersion = "2.20.1"
+  val jacksonVersion = "2.20.2"
   Seq(
     "com.fasterxml.jackson.core" % "jackson-annotations" % "2.20",
     "com.fasterxml.jackson.core" % "jackson-core" % jacksonVersion,
