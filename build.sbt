@@ -21,7 +21,7 @@ licenses += (
 val safeTransitiveDependencies = {
   val jacksonVersion = "2.21.4"
   Seq(
-    "com.fasterxml.jackson.core" % "jackson-annotations" % "2.21",
+    "com.fasterxml.jackson.core" % "jackson-annotations" % "2.22",
     "com.fasterxml.jackson.core" % "jackson-core" % jacksonVersion,
     "com.fasterxml.jackson.core" % "jackson-databind" % jacksonVersion,
     "com.fasterxml.jackson.datatype" % "jackson-datatype-jdk8" % jacksonVersion,
