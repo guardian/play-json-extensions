@@ -3,7 +3,7 @@ import sbtversionpolicy.withsbtrelease.ReleaseVersion
 
 organization := "com.gu"
 name := "play-json-extensions"
-scalaVersion := "2.13.18"
+scalaVersion := "3.9.0"
 description := "Additional type classes for the play-json serialization library"
 
 startYear := Some(2015)
